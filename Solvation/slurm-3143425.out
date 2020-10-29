@@ -1,0 +1,37 @@
+===================================================================================
+SLURM Job ID:            3143425
+Submit time:             Tue Mar 17 16:38:35 GMT 2020 (Unix Epoch time: 1584463115)
+Start time:              Thu Mar 19 18:16:26 GMT 2020 (Unix Epoch time: 1584641786)
+No. nodes:               1
+No. tasks:               16
+Job name:                rfregession
+Account:                 teaching
+QoS:                     teaching
+Partition (queue):       teaching
+Submit directory:        /users/gpb15148/Random Forest/solv
+Script name:             /users/gpb15148/Random Forest/solv/run_RF_solv.sh
+Master node:             node288
+Nodes used:              node288
+Task distribution:       
+===================================================================================
+
+Traceback (most recent call last):
+  File "RF_09.03_solv.py", line 74, in <module>
+    test_features = pd.DataFrame(test_features, columns=feature_list)
+  File "/opt/software/anaconda/python-3.6.8/2019.03/lib/python3.6/site-packages/pandas/core/frame.py", line 440, in __init__
+    mgr = init_ndarray(data, index, columns, dtype=dtype, copy=copy)
+  File "/opt/software/anaconda/python-3.6.8/2019.03/lib/python3.6/site-packages/pandas/core/internals/construction.py", line 213, in init_ndarray
+    return create_block_manager_from_blocks(block_values, [columns, index])
+  File "/opt/software/anaconda/python-3.6.8/2019.03/lib/python3.6/site-packages/pandas/core/internals/managers.py", line 1681, in create_block_manager_from_blocks
+    mgr = BlockManager(blocks, axes)
+  File "/opt/software/anaconda/python-3.6.8/2019.03/lib/python3.6/site-packages/pandas/core/internals/managers.py", line 143, in __init__
+    self._verify_integrity()
+  File "/opt/software/anaconda/python-3.6.8/2019.03/lib/python3.6/site-packages/pandas/core/internals/managers.py", line 350, in _verify_integrity
+    "tot_items: {1}".format(len(self.items), tot_items)
+AssertionError: Number of manager items must equal union of block items
+# manager items: 1124, # tot_items: 1123
+===================================================================================
+SLURM job 3143425 ended:     Thu Mar 19 18:16:30 GMT 2020 (Unix Epoch time: 1584641790)
+This is an estimated end time using the 'date' command from node node288.hpc.strath.ac.uk
+For accurate timings, use 'sacct -j 3143425 -X --format=Submit,Start,End,Elapsed'
+======================================================================================

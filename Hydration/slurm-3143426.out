@@ -1,0 +1,38 @@
+===================================================================================
+SLURM Job ID:            3143426
+Submit time:             Tue Mar 17 16:38:51 GMT 2020 (Unix Epoch time: 1584463131)
+Start time:              Thu Mar 19 18:16:59 GMT 2020 (Unix Epoch time: 1584641819)
+No. nodes:               1
+No. tasks:               16
+Job name:                rfregession
+Account:                 teaching
+QoS:                     teaching
+Partition (queue):       teaching
+Submit directory:        /users/gpb15148/Random Forest/hyd
+Script name:             /users/gpb15148/Random Forest/hyd/run_RF_hyd.sh
+Master node:             node288
+Nodes used:              node288
+Task distribution:       
+===================================================================================
+
+Traceback (most recent call last):
+  File "RF_09.03_hyd.py", line 41, in <module>
+    stored_preds = pd.read_csv('predictions_template.csv')
+  File "/opt/software/anaconda/python-3.6.8/2019.03/lib/python3.6/site-packages/pandas/io/parsers.py", line 685, in parser_f
+    return _read(filepath_or_buffer, kwds)
+  File "/opt/software/anaconda/python-3.6.8/2019.03/lib/python3.6/site-packages/pandas/io/parsers.py", line 457, in _read
+    parser = TextFileReader(fp_or_buf, **kwds)
+  File "/opt/software/anaconda/python-3.6.8/2019.03/lib/python3.6/site-packages/pandas/io/parsers.py", line 895, in __init__
+    self._make_engine(self.engine)
+  File "/opt/software/anaconda/python-3.6.8/2019.03/lib/python3.6/site-packages/pandas/io/parsers.py", line 1135, in _make_engine
+    self._engine = CParserWrapper(self.f, **self.options)
+  File "/opt/software/anaconda/python-3.6.8/2019.03/lib/python3.6/site-packages/pandas/io/parsers.py", line 1917, in __init__
+    self._reader = parsers.TextReader(src, **kwds)
+  File "pandas/_libs/parsers.pyx", line 382, in pandas._libs.parsers.TextReader.__cinit__
+  File "pandas/_libs/parsers.pyx", line 689, in pandas._libs.parsers.TextReader._setup_parser_source
+FileNotFoundError: [Errno 2] File b'predictions_template.csv' does not exist: b'predictions_template.csv'
+===================================================================================
+SLURM job 3143426 ended:     Thu Mar 19 18:17:02 GMT 2020 (Unix Epoch time: 1584641822)
+This is an estimated end time using the 'date' command from node node288.hpc.strath.ac.uk
+For accurate timings, use 'sacct -j 3143426 -X --format=Submit,Start,End,Elapsed'
+======================================================================================
