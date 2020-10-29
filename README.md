@@ -1,40 +1,38 @@
 # LogP-Prediction
 
-# Random forest regression method for the prediction of the octanol-water partion coefficient (logP), hydration energy and solvation energy. RF method includes recursive feature eliminations and hyperparameter optimisation. Recursive feature elimination removes features until a maximum of 100 out of the 1000+ features remains in order to improve computation speed. Feature importance is ranked and saved to enable analysis of key descriptors.
+#Random forest regression method for the prediction of the octanol-water partion coefficient (logP), hydration energy and solvation energy. RF method includes recursive feature eliminations and hyperparameter optimisation. Recursive feature elimination removes features until a maximum of 100 out of the 1000+ features remains in order to improve computation speed. Feature importance is ranked and saved to enable analysis of key descriptors.
 
 # Code example can be found below. Can be run from: LogP-Prediction/logP/RF_09.03_opt_RFEC.py
-
-################################################################################################
 
 import pandas as pd
 import numpy as np
 
-# Using Skicit-learn, import train test split, RF, random cross validation optimisation, recursive feature elimination, and metrics
+#Using Skicit-learn, import train test split, RF, random cross validation optimisation, recursive feature elimination, and metrics
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestRegressor as rfr
 from sklearn.model_selection import RandomizedSearchCV as rcv
 from sklearn.feature_selection import RFECV
 from sklearn import metrics
 
-# Seed for reproducable results
+#Seed for reproducable results
 seed = 121212
 np.random.seed(seed)
 
-# Defining variables for averages
+#Defining variables for averages
 avgr2 = 0
 avgrmse = 0
 avgmae = 0
 avgsdep = 0
 
-# Defining hyperpara's
-# max number of features to consider at each split
+#Defining hyperpara's
+#max number of features to consider at each split
 max_features = ['sqrt', 'log2',
                 0.333]
-# max number of levels in tree
+#max number of levels in tree
 max_depth = [2, 3, 5, 8, 10, 13, 15, 20]
-# Minimum number of samples to spilt a node
+#Minimum number of samples to spilt a node
 min_samples_split = [2, 3, 4, 5, 7, 10]
-# Minimum number of samples required at each leaf node
+#Minimum number of samples required at each leaf node
 min_samples_leaf = [1, 2, 3, 5]
 
 grid_param = {'max_features': max_features,
@@ -42,16 +40,16 @@ grid_param = {'max_features': max_features,
               'min_samples_split': min_samples_split,
               'min_samples_leaf': min_samples_leaf}
 
-# Set how many times the RF model will run
+#Set how many times the RF model will run
 runtimes = 100
 
-# Set up dataframe for storing data
+#Set up dataframe for storing data
 stored_preds = pd.read_csv('predictions_template.csv')
 stored_opt = pd.DataFrame()
 stored_import = pd.DataFrame(pd.read_csv('features_template.csv'))
 stored_metrics = pd.DataFrame()
 
-# Running model for n times
+#Running model for n times
 for n in range(runtimes):
     # Read in data as pandas dataframe
     features = pd.read_csv('mordredRF.csv')
