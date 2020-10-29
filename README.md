@@ -2,7 +2,7 @@
 
 #Random forest regression method for the prediction of the octanol-water partion coefficient (logP), hydration energy and solvation energy. RF method includes recursive feature eliminations and hyperparameter optimisation. Recursive feature elimination removes features until a maximum of 100 out of the 1000+ features remains in order to improve computation speed. Feature importance is ranked and saved to enable analysis of key descriptors.
 
-# Code example can be found below. Can be run from: LogP-Prediction/logP/RF_09.03_opt_RFEC.py
+# Code example can be found below. [Can be found here](../main/logP/RF_09.03_opt_RFEC.py)
 ```
   import pandas as pd
   import numpy as np
