@@ -99,19 +99,22 @@
       best_params = best_params.to_frame().transpose()
       stored_opt = stored_opt.append(best_params)
 
-      # Recursive feature elimination cross validation with optimised hyperparameters, first with 25 removed per step till at least 100 remain, then stepwise
+      # Recursive feature elimination cross validation with optimised hyperparameters, first with 100 removed per step till at least 400 remain...
       rf_opt_RFEC = RFECV(estimator=rf, step=100, min_features_to_select=400, cv=5, scoring='neg_mean_squared_error', verbose=1, n_jobs=-1)
       train_features = rf_opt_RFEC.fit_transform(train_features, train_labels)
       feature_list = feature_list[rf_opt_RFEC.support_]
 
+      # Then 25 removed until 200 remain...
       rf_opt_RFEC = RFECV(estimator=rf, step=25, min_features_to_select=200, cv=5, scoring='neg_mean_squared_error', verbose=1, n_jobs=-1)
       train_features = rf_opt_RFEC.fit_transform(train_features, train_labels)
       feature_list = feature_list[rf_opt_RFEC.support_]
 
+      # Then 10 removed until 100 remain...
       rf_opt_RFEC = RFECV(estimator=rf, step=10, min_features_to_select=100, cv=5, scoring='neg_mean_squared_error', verbose=1, n_jobs=-1)
       train_features = rf_opt_RFEC.fit_transform(train_features, train_labels)
       feature_list = feature_list[rf_opt_RFEC.support_]
 
+      # Finally stepwise removal of features, RFE was done this way to decrease computational expensive
       rf_opt_RFEC = RFECV(estimator=rf, step=1, cv=5, scoring='neg_mean_squared_error', verbose=1, n_jobs=-1)
       train_features = rf_opt_RFEC.fit_transform(train_features, train_labels)
       feature_list = feature_list[rf_opt_RFEC.support_]
